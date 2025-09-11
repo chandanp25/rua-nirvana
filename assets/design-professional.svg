@@ -1,0 +1,36 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- Design Tool Interface -->
+  <rect x="20" y="20" width="360" height="260" rx="8" fill="white" stroke="#e5e7eb" stroke-width="2"/>
+  
+  <!-- Toolbar -->
+  <rect x="20" y="20" width="360" height="40" rx="8" fill="#374151"/>
+  <rect x="20" y="52" width="360" height="2" fill="#e5e7eb"/>
+  
+  <!-- Tool Icons -->
+  <rect x="30" y="30" width="20" height="20" rx="2" fill="#2563eb"/>
+  <rect x="55" y="30" width="20" height="20" rx="2" fill="#6b7280"/>
+  <rect x="80" y="30" width="20" height="20" rx="2" fill="#6b7280"/>
+  <rect x="105" y="30" width="20" height="20" rx="2" fill="#6b7280"/>
+  
+  <!-- Canvas Area -->
+  <rect x="40" y="80" width="320" height="180" rx="4" fill="#f9fafb" stroke="#e5e7eb"/>
+  
+  <!-- Design Elements -->
+  <rect x="60" y="100" width="120" height="80" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-dasharray="4 4"/>
+  <rect x="200" y="100" width="100" height="60" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+  <circle cx="270" cy="200" r="30" fill="#ecfdf5" stroke="#10b981"/>
+  
+  <!-- UI Components -->
+  <rect x="60" y="200" width="80" height="8" rx="4" fill="#2563eb"/>
+  <rect x="60" y="215" width="60" height="8" rx="4" fill="#6b7280" opacity="0.5"/>
+  <rect x="60" y="230" width="70" height="8" rx="4" fill="#6b7280" opacity="0.3"/>
+  
+  <!-- Properties Panel -->
+  <rect x="320" y="80" width="50" height="180" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <rect x="325" y="90" width="40" height="6" rx="3" fill="#2563eb" opacity="0.6"/>
+  <rect x="325" y="105" width="30" height="6" rx="3" fill="#6b7280" opacity="0.4"/>
+  <rect x="325" y="120" width="35" height="6" rx="3" fill="#6b7280" opacity="0.4"/>
+</svg>

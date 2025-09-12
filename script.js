@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
     visitDateInput.min = today;
     
     // Form validation and real-time feedback
-    const inputs = form.querySelectorAll('input, select');
+    const inputs = contactForm.querySelectorAll('input, select');
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
             validateField(this);

@@ -1,5 +1,44 @@
 // Modal Functionality for both Book Site Visit and Contact forms
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    if (mobileMenuToggle && mobileNav) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            if (mobileNav.classList.contains('active')) {
+                mobileMenuToggle.innerHTML = '✕';
+            } else {
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+
+        // Close mobile menu when clicking on nav items
+        const mobileNavItems = mobileNav.querySelectorAll('.nav-item');
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!mobileNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+    }
     // Simple Image Sliding
     const carouselGroup = document.querySelector('.image-carousel-group');
     const carouselSvg = document.querySelector('.carousel-svg');

@@ -9,32 +9,127 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileNav.classList.toggle('active');
             if (mobileNav.classList.contains('active')) {
                 mobileMenuToggle.innerHTML = '✕';
+                
+                // Remove the existing mobile nav and create a new one
+                mobileNav.remove();
+                
+                // Create a completely new mobile nav element
+                const newMobileNav = document.createElement('nav');
+                newMobileNav.id = 'mobileNav';
+                newMobileNav.className = 'mobile-nav';
+                newMobileNav.innerHTML = `
+                    <a href="#" class="nav-item">About</a>
+                    <a href="#" class="nav-item">Farmstay</a>
+                    <a href="#" class="nav-item nav-cta book-visit-btn">Book Site Visit</a>
+                `;
+                
+                // Apply styles directly to the new element
+                newMobileNav.style.cssText = `
+                    display: flex !important;
+                    position: fixed !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100vw !important;
+                    height: 100vh !important;
+                    background: rgba(33, 59, 44, 0.95) !important;
+                    z-index: 99999 !important;
+                    flex-direction: column !important;
+                    justify-content: center !important;
+                    align-items: center !important;
+                    backdrop-filter: blur(10px) !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    border: none !important;
+                    box-sizing: border-box !important;
+                `;
+                
+                // Style the nav items - ensure all have consistent styling
+                const navItems = newMobileNav.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    // Special styling for "Book Site Visit" button
+                    const isBookVisit = item.textContent.includes('Book Site Visit');
+                    
+                    item.style.cssText = `
+                        color: white !important;
+                        font-size: ${isBookVisit ? '14px' : '16px'} !important;
+                        margin: 12px 0 !important;
+                        padding: ${isBookVisit ? '20px 35px' : '25px 35px'} !important;
+                        text-decoration: none !important;
+                        background: rgba(255, 255, 255, 0.1) !important;
+                        border-radius: 8px !important;
+                        display: block !important;
+                        text-align: center !important;
+                        width: 320px !important;
+                        border: none !important;
+                        font-weight: normal !important;
+                        white-space: normal !important;
+                        box-sizing: border-box !important;
+                        line-height: ${isBookVisit ? '1.2' : '1.3'} !important;
+                        word-wrap: break-word !important;
+                        overflow-wrap: break-word !important;
+                        min-height: ${isBookVisit ? '60px' : 'auto'} !important;
+                    `;
+                });
+                
+                // Add the new element to the body
+                document.body.appendChild(newMobileNav);
+                
+                // Add event listeners to the mobile menu buttons
+                const bookVisitBtn = newMobileNav.querySelector('.book-visit-btn');
+                if (bookVisitBtn) {
+                    bookVisitBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Close mobile menu first
+                        newMobileNav.remove();
+                        mobileMenuToggle.innerHTML = '☰';
+                        // Open the book visit modal
+                        const bookVisitModal = document.getElementById('bookVisitModal');
+                        if (bookVisitModal) {
+                            bookVisitModal.style.display = 'block';
+                        }
+                    });
+                }
+                
+                // Update the reference
+                window.currentMobileNav = newMobileNav;
             } else {
+                mobileMenuToggle.innerHTML = '☰';
+                const currentNav = window.currentMobileNav || document.getElementById('mobileNav');
+                if (currentNav) {
+                    currentNav.remove();
+                }
+            }
+        });
+
+        // Close mobile menu when clicking on nav items (using event delegation)
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('nav-item')) {
+                const currentNav = window.currentMobileNav || document.getElementById('mobileNav');
+                if (currentNav) {
+                    currentNav.remove();
+                }
                 mobileMenuToggle.innerHTML = '☰';
             }
         });
 
-        // Close mobile menu when clicking on nav items
-        const mobileNavItems = mobileNav.querySelectorAll('.nav-item');
-        mobileNavItems.forEach(item => {
-            item.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
-            });
-        });
-
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mobileNav.classList.remove('active');
+            if (!mobileMenuToggle.contains(e.target)) {
+                const currentNav = window.currentMobileNav || document.getElementById('mobileNav');
+                if (currentNav) {
+                    currentNav.remove();
+                }
                 mobileMenuToggle.innerHTML = '☰';
             }
         });
 
         // Close mobile menu on escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
-                mobileNav.classList.remove('active');
+            if (e.key === 'Escape') {
+                const currentNav = window.currentMobileNav || document.getElementById('mobileNav');
+                if (currentNav) {
+                    currentNav.remove();
+                }
                 mobileMenuToggle.innerHTML = '☰';
             }
         });
@@ -147,46 +242,6 @@ document.addEventListener('DOMContentLoaded', function() {
         function handleTouchEnd() {
             endDrag();
         }
-    }
-    // Mobile Menu Functionality
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-    
-    if (mobileMenuToggle && mobileNav) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            // Change hamburger icon to X when menu is open
-            if (mobileNav.classList.contains('active')) {
-                mobileMenuToggle.innerHTML = '✕';
-            } else {
-                mobileMenuToggle.innerHTML = '☰';
-            }
-        });
-        
-        // Close mobile menu when clicking on nav items
-        const mobileNavItems = mobileNav.querySelectorAll('.nav-item');
-        mobileNavItems.forEach(item => {
-            item.addEventListener('click', function() {
-                mobileNav.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
-            });
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mobileNav.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
-            }
-        });
-        
-        // Close mobile menu on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
-                mobileNav.classList.remove('active');
-                mobileMenuToggle.innerHTML = '☰';
-            }
-        });
     }
     
     // Book Site Visit Modal

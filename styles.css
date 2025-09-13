@@ -1293,18 +1293,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block !important;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #213B2C;
-        cursor: pointer;
-        z-index: 1000;
-    }
     
     .hero-section {
         flex-direction: column;
@@ -1399,18 +1387,6 @@ body {
         order: 4;
     }
     
-    .mobile-menu-toggle {
-        display: block !important;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: #213B2C;
-        cursor: pointer;
-        z-index: 1000;
-    }
     
     .contact-btn {
         width: 160px;

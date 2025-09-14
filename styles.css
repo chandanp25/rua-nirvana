@@ -2527,16 +2527,19 @@ body {
     }
     
     .development-features {
-        display: flex !important;
-        flex-direction: column;
+        display: grid !important;
+        grid-template-areas: 
+            "title"
+            "image" 
+            "content";
         gap: 30px;
         min-height: auto;
     }
     
-    /* Mobile: Show the title first */
-    .phase-development-title {
+    /* Mobile: Position title first */
+    .development-content .phase-development-title {
+        grid-area: title;
         display: block !important;
-        order: 1;
         font-family: 'Playfair Display', serif;
         font-weight: 700;
         font-size: 32px;
@@ -2547,7 +2550,7 @@ body {
     }
     
     .development-image {
-        order: 2;
+        grid-area: image;
         height: 350px;
         width: 100%;
         max-width: 500px;
@@ -2560,14 +2563,10 @@ body {
     }
     
     .development-content {
-        order: 3;
+        grid-area: content;
         text-align: left;
     }
     
-    /* Hide the duplicate title inside development-content since we're showing the main title */
-    .development-content .phase-development-title {
-        display: none !important;
-    }
     
     .development-content ul {
         text-align: left;
@@ -2833,37 +2832,36 @@ body {
     }
     
     .development-features {
-        display: flex !important;
-        flex-direction: column;
+        display: grid !important;
+        grid-template-areas: 
+            "title"
+            "image" 
+            "content";
         gap: 24px;
         padding: 0 8px;
     }
     
-    /* Title first */
-    .phase-development-title {
+    /* Title first - extract from development-content */
+    .development-content .phase-development-title {
+        grid-area: title;
         display: block !important;
-        order: 1;
         font-size: 28px;
         margin: 0 0 16px 0;
     }
     
     /* Image second */
     .development-image {
+        grid-area: image;
         height: 200px;
-        order: 2;
         border-radius: 12px;
         overflow: hidden;
     }
     
     /* Content third */
     .development-content {
-        order: 3;
+        grid-area: content;
     }
     
-    /* Hide duplicate title */
-    .development-content .phase-development-title {
-        display: none !important;
-    }
     
     .ideal-for-grid {
         grid-template-columns: 1fr;

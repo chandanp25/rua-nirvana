@@ -2533,23 +2533,17 @@ body {
         min-height: auto;
     }
     
-    /* Mobile: Extract title from content and position it first */
-    .development-features::before {
-        content: "Phase 1 Development: Limited Opportunity";
-        display: block;
+    /* Mobile: Show the title first */
+    .phase-development-title {
+        display: block !important;
+        order: 1;
         font-family: 'Playfair Display', serif;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 32px;
         line-height: 139%;
         color: #213B2C;
-        margin: 0 0 30px 0;
+        margin: 0 0 20px 0;
         text-align: left;
-        order: 1;
-    }
-    
-    /* Hide the original title in mobile */
-    .phase-development-title {
-        display: none;
     }
     
     .development-image {
@@ -2568,6 +2562,11 @@ body {
     .development-content {
         order: 3;
         text-align: left;
+    }
+    
+    /* Hide the duplicate title inside development-content since we're showing the main title */
+    .development-content .phase-development-title {
+        display: none !important;
     }
     
     .development-content ul {
@@ -2834,16 +2833,36 @@ body {
     }
     
     .development-features {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: column;
         gap: 24px;
         padding: 0 8px;
     }
     
+    /* Title first */
+    .phase-development-title {
+        display: block !important;
+        order: 1;
+        font-size: 28px;
+        margin: 0 0 16px 0;
+    }
+    
+    /* Image second */
     .development-image {
         height: 200px;
-        order: -1;
+        order: 2;
         border-radius: 12px;
         overflow: hidden;
+    }
+    
+    /* Content third */
+    .development-content {
+        order: 3;
+    }
+    
+    /* Hide duplicate title */
+    .development-content .phase-development-title {
+        display: none !important;
     }
     
     .ideal-for-grid {
@@ -3480,16 +3499,6 @@ body {
 /* ===========================================
    MOBILE RESPONSIVE STYLES
    =========================================== */
-
-/* Mobile Menu Toggle - Hidden on Desktop */
-.mobile-menu-toggle {
-    display: none;
-}
-
-/* Mobile Video Wrapper - Hidden on Desktop */
-.mobile-video-wrapper {
-    display: none;
-}
 
 /* Mobile Navigation - Hidden on Desktop */
 .mobile-nav {
